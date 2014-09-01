@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
-import rugal.center.util.Message;
+import rugal.common.Message;
 
 @ControllerAdvice
 public class ExceptionAction

@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import rugal.center.core.entity.Passport;
 import rugal.center.core.service.PassportService;
 import rugal.center.core.service.validator.PassportActivator;
-import rugal.center.util.Message;
 import rugal.center.util.NameResolver;
 import rugal.center.util.ReportString;
+import rugal.common.Message;
 
 /**
  * this is a action that provide passport operation web service.<BR/>
@@ -119,26 +119,20 @@ public class PassportAction implements ApplicationContextAware
         {//passport not found
             return Message.failMessage(ReportString.WARN_NOT_EXIST);
         }
-        if (bean.getActivated() == 0)
+        if (!bean.isActivated() || bean.noPassword())
         {
+            //change password only when have a previous password
             return Message.failMessage(ReportString.INFO_NEEDS_ACTIVATED);
         }
-        if (bean.noPassword())
-        {
-            return Message.failMessage(ReportString.INFO_NO_PASSWORD);
-        }
-        //change password only when have a previous password
-        if (bean.checkPassword(oldPWD))
-        {
-            // password valid
-            bean.setPassword(newPWD);
-            LOG.info("change passport for passport: " + bean.getId());
-            passportService.updatePassport(bean);
-            return Message.successMessage("password changed", bean);
-        } else
+        if (!bean.checkPassword(oldPWD))
         {
             return Message.failMessage(ReportString.WARN_INVALID);
         }
+        // password valid
+        bean.setPassword(newPWD);
+        LOG.info("change passport for passport: " + bean.getId());
+        passportService.updatePassport(bean);
+        return Message.successMessage("password changed", bean);
     }
 
     /**

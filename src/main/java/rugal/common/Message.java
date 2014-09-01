@@ -1,4 +1,4 @@
-package rugal.center.util;
+package rugal.common;
 
 /**
  *

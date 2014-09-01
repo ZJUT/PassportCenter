@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import rugal.center.core.entity.Major;
 import rugal.center.core.service.MajorService;
-import rugal.center.util.Message;
+import rugal.common.Message;
 
 /**
  * major web service action provided for outer request.<BR/>

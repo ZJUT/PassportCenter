@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import rugal.center.core.entity.Passport;
 import rugal.center.core.service.PassportService;
-import rugal.center.util.Message;
+import rugal.common.Message;
 import rugal.center.util.ReportString;
 import rugal.common.mail.pojo.Mail;
 import rugal.common.mail.service.SendMailService;

@@ -12,8 +12,8 @@ import rugal.center.core.entity.Account;
 import rugal.center.core.entity.Passport;
 import rugal.center.core.service.AccountService;
 import rugal.center.core.service.PassportService;
-import rugal.center.util.Message;
 import rugal.center.util.ReportString;
+import rugal.common.Message;
 
 /**
  * this is an outer API used for outer request Rather than inner.<BR/>
@@ -76,13 +76,9 @@ public class EntranceAction
         {
             return Message.failMessage(ReportString.WARN_NOT_EXIST);
         }
-        if (!bean.isActivated())
+        if (!bean.isActivated() || bean.noPassword())
         {
             return Message.failMessage(ReportString.INFO_NEEDS_ACTIVATED);
-        }
-        if (null == bean.getPassword() || bean.getPassword().isEmpty())
-        {
-            return Message.failMessage(ReportString.INFO_NO_PASSWORD);
         }
         if (!bean.checkPassword(password))
         {

@@ -17,7 +17,7 @@ import rugal.center.core.service.PassportService;
 import rugal.center.core.service.idresolve.IDResolver;
 import rugal.center.util.NameResolver;
 import rugal.center.util.ReportString;
-import rugal.center.util.Message;
+import rugal.common.Message;
 
 /**
  * ID resolve service provided for outer usage. A very convenient web service.<BR/>

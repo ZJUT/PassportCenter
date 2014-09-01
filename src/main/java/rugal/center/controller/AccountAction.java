@@ -15,7 +15,7 @@ import rugal.center.core.service.AccountService;
 import rugal.center.core.service.ParametersService;
 import rugal.center.core.service.PassportService;
 import rugal.center.util.ReportString;
-import rugal.center.util.Message;
+import rugal.common.Message;
 
 /**
  * this is a action that handle with operation of account.<BR/>

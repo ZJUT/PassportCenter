@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import rugal.center.core.entity.School;
 import rugal.center.core.service.SchoolService;
-import rugal.center.util.Message;
+import rugal.common.Message;
 
 /**
  * school web service action provided for outer usage.<BR/>

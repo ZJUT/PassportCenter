@@ -31,19 +31,13 @@ public class ReportString
 
     public static final String INFO_ALREADY_ACTIVATED = "This passport is already activated";
 
-    public static final String INFO_NO_PASSWORD = "Please activate this passport";
-
-    public static final String WARN_INVALID = "Please check your passport's validation";
+    public static final String WARN_INVALID = "Please validate your passport status";
 
     public static final String INFO_ACCOUNT_FULL = "You have got enough account";
 
     public static final String INFO_ACCOUNT_OCCUPIED = "This account name was occupied";
 
     public static final String WARN_PARAMETER_EMPTY = "missing required request parameters";
-
-    public static final String WARN_BRUTAL_ACCESS = "Too fast for me!";
-
-    public static final String WARN_SQL_INJECTION = "programmer is a tough jobs!";
 
     public static final String INFO_ACTIVATION_SUCCESS = "Activation succeeded!";
 

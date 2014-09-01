@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import rugal.center.core.entity.Passport;
 import rugal.center.core.service.PassportService;
 import rugal.center.util.ReportString;
-import rugal.center.util.Message;
+import rugal.common.Message;
 
 /**
  *
