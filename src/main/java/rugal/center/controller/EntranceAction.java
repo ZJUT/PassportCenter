@@ -76,13 +76,13 @@ public class EntranceAction
         {
             return Message.failMessage(ReportString.WARN_NOT_EXIST);
         }
-        if (bean.isActivated())
+        if (!bean.isActivated())
         {
             return Message.failMessage(ReportString.INFO_NEEDS_ACTIVATED);
         }
         if (null == bean.getPassword() || bean.getPassword().isEmpty())
         {
-            return Message.failMessage(ReportString.INFO_NEEDS_ACTIVATED);
+            return Message.failMessage(ReportString.INFO_NO_PASSWORD);
         }
         if (!bean.checkPassword(password))
         {

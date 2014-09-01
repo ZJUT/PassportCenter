@@ -67,7 +67,7 @@ public class ApplicationContext
         hibernateProperties.put("hibernate.connection.autocommit", "false");
         hibernateProperties.put("hibernate.format_sql", "true");
         hibernateProperties.put("hibernate.hbm2ddl.auto", "validate");
-        hibernateProperties.put("hibernate.show_sql", "true");
+        hibernateProperties.put("hibernate.show_sql", "false");
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;
     }
