@@ -1,6 +1,5 @@
 package rugal.center.core.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -14,45 +13,49 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author rugal
+ * @author Rugal Bernstein
  */
 @Entity
-@Table(name = "major")
-public class Major implements Serializable
+@Table(name = "passport_type")
+public class PassportType implements Serializable
 {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 5)
-    @Column(name = "mid")
-    private String mid;
+    @Column(name = "ptid")
+    private Short ptid;
 
-    @Size(max = 50)
+    @Size(max = 20)
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "mid")
-    @JsonIgnore
+    @Size(max = 5)
+    @Column(name = "abbreviation")
+    private String abbreviation;
+
+    @OneToMany(mappedBy = "ptid")
     private List<Passport> passportList;
 
-    public Major()
+    public PassportType()
     {
     }
 
-    public Major(String mid)
+    public PassportType(Short ptid)
     {
-        this.mid = mid;
+        this.ptid = ptid;
     }
 
-    public String getMid()
+    public Short getPtid()
     {
-        return mid;
+        return ptid;
     }
 
-    public void setMid(String mid)
+    public void setPtid(Short ptid)
     {
-        this.mid = mid;
+        this.ptid = ptid;
     }
 
     public String getName()
@@ -63,6 +66,16 @@ public class Major implements Serializable
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public String getAbbreviation()
+    {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation)
+    {
+        this.abbreviation = abbreviation;
     }
 
     public List<Passport> getPassportList()
@@ -79,7 +92,7 @@ public class Major implements Serializable
     public int hashCode()
     {
         int hash = 0;
-        hash += (mid != null ? mid.hashCode() : 0);
+        hash += (ptid != null ? ptid.hashCode() : 0);
         return hash;
     }
 
@@ -87,13 +100,13 @@ public class Major implements Serializable
     public boolean equals(Object object)
     {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Major))
+        if (!(object instanceof PassportType))
         {
             return false;
         }
-        Major other = (Major) object;
-        if ((this.mid == null && other.mid != null) || (this.mid != null && !this.mid
-            .equals(other.mid)))
+        PassportType other = (PassportType) object;
+        if ((this.ptid == null && other.ptid != null) || (this.ptid != null && !this.ptid
+            .equals(other.ptid)))
         {
             return false;
         }
@@ -103,7 +116,7 @@ public class Major implements Serializable
     @Override
     public String toString()
     {
-        return "rugal.center.core.entity.Major[ mid=" + mid + " ]";
+        return "rugal.center.core.entity.PassportType[ ptid=" + ptid + " ]";
     }
 
 }

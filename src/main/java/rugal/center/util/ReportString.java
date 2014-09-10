@@ -17,10 +17,6 @@ public class ReportString
 
     private static final Logger LOG = LoggerFactory.getLogger(ReportString.class.getName());
 
-    public static final String INFO_NORMAL = "Fine";
-
-    public static final String WARN_BAD = "Bad";
-
     public static final String WARN_NOT_EXIST = "This passport does not exist";
 
     public static final String INFO_NEEDS_ACTIVATED = "This passport needs activated first";

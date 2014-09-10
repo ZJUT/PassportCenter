@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -23,14 +24,15 @@ import javax.validation.constraints.Size;
 public class School implements Serializable
 {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 5)
+    @Column(name = "sid")
     private String sid;
 
     @Size(max = 50)
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "sid")
@@ -106,4 +108,5 @@ public class School implements Serializable
     {
         return "rugal.center.core.entity.School[ sid=" + sid + " ]";
     }
+
 }

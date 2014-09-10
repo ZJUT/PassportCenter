@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import rugal.center.core.entity.Passport;
 import rugal.center.core.service.PassportService;
 import rugal.center.core.service.validator.PassportActivator;
-import rugal.center.util.NameResolver;
 import rugal.center.util.ReportString;
 import rugal.common.Message;
 
@@ -90,7 +89,7 @@ public class PassportAction implements ApplicationContextAware
             return Message.failMessage(ReportString.INFO_ALREADY_ACTIVATED);
         }
 
-        String beanName = NameResolver.resolve(bean) + PassportActivator.class.getSimpleName();
+        String beanName = bean.getType().getName() + PassportActivator.class.getSimpleName();
         PassportActivator validator = (PassportActivator) context.getBean(beanName);
         if (!validator.check(bean, idcard))
         {
@@ -146,7 +145,7 @@ public class PassportAction implements ApplicationContextAware
      */
     @ResponseBody
     @RequestMapping(value = "/deactivation", method = RequestMethod.PUT)
-    public Object deActivate(@RequestParam String id, @RequestParam String idcard)
+    public Object deactivate(@RequestParam String id, @RequestParam String idcard)
     {
         Passport bean = passportService.findById(id);
         if (null == bean)
@@ -171,4 +170,5 @@ public class PassportAction implements ApplicationContextAware
         passportService.updatePassport(bean);
         return Message.successMessage("Deactivation succeeded!", bean);
     }
+
 }

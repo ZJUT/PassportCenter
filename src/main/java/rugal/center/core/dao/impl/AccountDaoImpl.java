@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package rugal.center.core.dao.impl;
 
 import ml.rugal.sshcommon.hibernate.HibernateBaseDao;
