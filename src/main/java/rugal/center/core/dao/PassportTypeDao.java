@@ -1,6 +1,5 @@
 package rugal.center.core.dao;
 
-import org.springframework.transaction.annotation.Transactional;
 import rugal.center.core.entity.PassportType;
 
 /**
@@ -22,7 +21,6 @@ public interface PassportTypeDao
      * @param id
      * @return
      */
-    @Transactional(readOnly = true)
     PassportType findByID(Short id);
 
     /**

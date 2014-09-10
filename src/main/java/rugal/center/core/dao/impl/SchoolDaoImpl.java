@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package rugal.center.core.dao.impl;
 
 import java.util.List;
@@ -18,6 +14,7 @@ import rugal.center.core.entity.School;
  * @author rugal
  */
 @Repository
+@Transactional
 public class SchoolDaoImpl extends HibernateBaseDao<School, String> implements SchoolDao
 {
 

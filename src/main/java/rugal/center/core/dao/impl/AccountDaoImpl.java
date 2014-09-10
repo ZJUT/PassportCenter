@@ -14,6 +14,7 @@ import rugal.center.core.entity.Passport;
  * @author rugal
  */
 @Repository
+@Transactional
 public class AccountDaoImpl extends HibernateBaseDao<Account, String> implements AccountDao
 {
 

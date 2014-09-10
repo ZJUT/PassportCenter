@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package rugal.center.core.dao.impl;
 
 import ml.rugal.sshcommon.hibernate.HibernateBaseDao;
@@ -15,6 +11,7 @@ import rugal.center.core.entity.Parameters;
  * @author rugal
  */
 @Repository
+@Transactional
 public class ParametersDaoImpl extends HibernateBaseDao<Parameters, String> implements ParametersDao
 {
 

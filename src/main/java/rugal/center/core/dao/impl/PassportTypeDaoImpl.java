@@ -11,6 +11,7 @@ import rugal.center.core.entity.PassportType;
  * @author Rugal Bernstein
  */
 @Repository
+@Transactional
 public class PassportTypeDaoImpl extends HibernateBaseDao<PassportType, Short> implements
     PassportTypeDao
 {

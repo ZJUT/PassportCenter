@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package rugal.center.core.dao.impl;
 
 import java.util.List;
@@ -19,6 +15,7 @@ import rugal.center.core.entity.Major;
  * @author rugal
  */
 @Repository
+@Transactional
 public class MajorDaoImpl extends HibernateBaseDao<Major, String> implements MajorDao
 {
 
