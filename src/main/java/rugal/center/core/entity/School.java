@@ -89,18 +89,12 @@ public class School implements Serializable
     @Override
     public boolean equals(Object object)
     {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof School))
         {
             return false;
         }
         School other = (School) object;
-        if ((this.sid == null && other.sid != null) || (this.sid != null && !this.sid
-            .equals(other.sid)))
-        {
-            return false;
-        }
-        return true;
+        return this.sid.equals(other.sid);
     }
 
     @Override

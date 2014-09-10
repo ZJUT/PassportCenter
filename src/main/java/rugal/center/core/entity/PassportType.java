@@ -105,12 +105,7 @@ public class PassportType implements Serializable
             return false;
         }
         PassportType other = (PassportType) object;
-        if ((this.ptid == null && other.ptid != null) || (this.ptid != null && !this.ptid
-            .equals(other.ptid)))
-        {
-            return false;
-        }
-        return true;
+        return this.ptid.equals(other.ptid);
     }
 
     @Override

@@ -86,18 +86,12 @@ public class Major implements Serializable
     @Override
     public boolean equals(Object object)
     {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Major))
         {
             return false;
         }
         Major other = (Major) object;
-        if ((this.mid == null && other.mid != null) || (this.mid != null && !this.mid
-            .equals(other.mid)))
-        {
-            return false;
-        }
-        return true;
+        return this.mid.equals(other.mid);
     }
 
     @Override

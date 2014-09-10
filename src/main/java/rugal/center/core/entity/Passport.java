@@ -164,7 +164,7 @@ public class Passport implements Serializable
 
     public boolean noPassword()
     {
-        return null == this.password || password.isEmpty();
+        return password.isEmpty();
     }
 
     public String getPassword()
@@ -336,7 +336,7 @@ public class Passport implements Serializable
             return false;
         }
         Passport other = (Passport) object;
-        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
+        return this.id.equals(other.id);
     }
 
     @Override

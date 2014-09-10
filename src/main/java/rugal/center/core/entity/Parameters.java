@@ -77,12 +77,7 @@ public class Parameters implements Serializable
             return false;
         }
         Parameters other = (Parameters) object;
-        if ((this.name == null && other.name != null) || (this.name != null && !this.name
-            .equals(other.name)))
-        {
-            return false;
-        }
-        return true;
+        return this.name.equals(other.name);
     }
 
     @Override
