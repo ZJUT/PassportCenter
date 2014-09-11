@@ -9,6 +9,7 @@ import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
 import rugal.common.Message;
 
 @ControllerAdvice
+@Controller
 public class ExceptionAction
 {
 
@@ -51,13 +53,12 @@ public class ExceptionAction
      * @return
      * @throws org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException
      */
-    @RequestMapping()
+    @RequestMapping("/*")
     public Object PathNotFoundHandler(HttpServletRequest request) throws NoSuchRequestHandlingMethodException
     {
-        LOG
-            .warn(MessageFormat
-                .format("{0} occured, request URL: {1}, request host: {2}", NOT_FOUND, request
-                    .getRequestURI(), request.getRemoteAddr()));
+        LOG.warn(MessageFormat
+            .format("{0} occured, request URL: {1}, request host: {2}", NOT_FOUND, request
+                .getRequestURI(), request.getRemoteAddr()));
         throw new NoSuchRequestHandlingMethodException(request);
     }
 
