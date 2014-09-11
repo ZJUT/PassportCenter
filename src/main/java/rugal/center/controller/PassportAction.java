@@ -43,9 +43,15 @@ public class PassportAction implements ApplicationContextAware
         this.context = context;
     }
 
+    /**
+     *
+     * @param id
+     * @param number
+     * @return
+     */
     @ResponseBody
-    @RequestMapping(value = "/activation/teacher/{id}/{number}")
-    public Object activate(@PathVariable String id, @PathVariable String number)
+    @RequestMapping(value = "/activation/staff/{id}/{number}")
+    public Object staffActivate(@PathVariable String id, @PathVariable String number)
     {
         Passport bean = passportService.findById(id);
         if (null == bean)
@@ -89,7 +95,14 @@ public class PassportAction implements ApplicationContextAware
             return Message.failMessage(ReportString.INFO_ALREADY_ACTIVATED);
         }
 
-        String beanName = bean.getType().getName() + PassportActivator.class.getSimpleName();
+        String beanName;
+        if (bean.getType().getAbbreviation().equals("T"))
+        {
+            beanName = "teacherPassportActivator";
+        } else
+        {
+            beanName = "studentPassportActivator";
+        }
         PassportActivator validator = (PassportActivator) context.getBean(beanName);
         if (!validator.check(bean, idcard))
         {

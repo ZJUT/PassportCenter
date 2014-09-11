@@ -1,5 +1,6 @@
 package rugal.center.controller;
 
+import java.beans.Introspector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -50,7 +51,8 @@ public class IDResolveAction implements ApplicationContextAware
      */
     @ResponseBody
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public Object resolve(@PathVariable String id, @RequestParam(value = "false") boolean individual)
+    public Object resolve(@PathVariable String id,
+        @RequestParam(required = false, value = "false") boolean individual)
     {
         //TODO this method needs to enhance for individual.
         Passport passport = passportService.findById(id);
@@ -59,7 +61,8 @@ public class IDResolveAction implements ApplicationContextAware
             return Message.failMessage(ReportString.WARN_NOT_EXIST);
         }
         ResolvedID resolvedID = null;
-        String beanName = passport.getType().getName() + IDResolver.class.getSimpleName();
+        String beanName = Introspector.decapitalize(passport.getType().getName()) + IDResolver.class
+            .getSimpleName();
         try
         {
             IDResolver resolver = (IDResolver) context.getBean(beanName);
