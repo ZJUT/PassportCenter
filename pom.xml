@@ -82,6 +82,7 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.1.2.Final</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <artifactId>jandex</artifactId>
@@ -306,6 +307,12 @@
             <artifactId>javax.mail-api</artifactId>
             <version>1.5.1</version>
             <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <artifactId>activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>

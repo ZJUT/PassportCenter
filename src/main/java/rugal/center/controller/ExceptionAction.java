@@ -1,6 +1,5 @@
 package rugal.center.controller;
 
-import java.text.MessageFormat;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.TypeMismatchException;
 import org.slf4j.Logger;
@@ -56,9 +55,9 @@ public class ExceptionAction
     @RequestMapping("/*")
     public Object PathNotFoundHandler(HttpServletRequest request) throws NoSuchRequestHandlingMethodException
     {
-        LOG.warn(MessageFormat
-            .format("{0} occured, request URL: {1}, request host: {2}", NOT_FOUND, request
-                .getRequestURI(), request.getRemoteAddr()));
+//        LOG.warn(MessageFormat
+//            .format("{0} occured, request URL: {1}, request host: {2}", NOT_FOUND, request
+//                .getRequestURI(), request.getRemoteAddr()));
         throw new NoSuchRequestHandlingMethodException(request);
     }
 
