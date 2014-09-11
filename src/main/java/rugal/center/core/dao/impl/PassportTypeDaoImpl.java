@@ -3,16 +3,17 @@ package rugal.center.core.dao.impl;
 import ml.rugal.sshcommon.hibernate.HibernateBaseDao;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import rugal.center.core.dao.ParametersDao;
-import rugal.center.core.entity.Parameters;
+import rugal.center.core.dao.PassportTypeDao;
+import rugal.center.core.entity.PassportType;
 
 /**
  *
- * @author rugal
+ * @author Rugal Bernstein
  */
 @Repository
 @Transactional
-public class ParametersDaoImpl extends HibernateBaseDao<Parameters, String> implements ParametersDao
+public class PassportTypeDaoImpl extends HibernateBaseDao<PassportType, Short> implements
+    PassportTypeDao
 {
 
     /**
@@ -20,9 +21,9 @@ public class ParametersDaoImpl extends HibernateBaseDao<Parameters, String> impl
      */
     @Override
     @Transactional(readOnly = true)
-    public Parameters findByName(String name)
+    public PassportType findByID(Short id)
     {
-        Parameters entity = get(name);
+        PassportType entity = get(id);
         return entity;
     }
 
@@ -30,7 +31,7 @@ public class ParametersDaoImpl extends HibernateBaseDao<Parameters, String> impl
      * {@inheritDoc }
      */
     @Override
-    public Parameters save(Parameters bean)
+    public PassportType save(PassportType bean)
     {
         getSession().save(bean);
         return bean;
@@ -40,9 +41,9 @@ public class ParametersDaoImpl extends HibernateBaseDao<Parameters, String> impl
      * {@inheritDoc }
      */
     @Override
-    public Parameters deleteByName(String name)
+    public PassportType deleteByID(Short id)
     {
-        Parameters entity = super.get(name);
+        PassportType entity = super.get(id);
         if (entity != null)
         {
             getSession().delete(entity);
@@ -51,8 +52,8 @@ public class ParametersDaoImpl extends HibernateBaseDao<Parameters, String> impl
     }
 
     @Override
-    protected Class<Parameters> getEntityClass()
+    protected Class<PassportType> getEntityClass()
     {
-        return Parameters.class;
+        return PassportType.class;
     }
 }

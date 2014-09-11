@@ -1,6 +1,5 @@
 package rugal.center.controller;
 
-import java.text.MessageFormat;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.TypeMismatchException;
 import org.slf4j.Logger;
@@ -9,6 +8,7 @@ import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -26,12 +26,13 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
 import rugal.common.Message;
 
 @ControllerAdvice
+@Controller
 public class ExceptionAction
 {
 
     private static final String BAD_REQUEST = "400 (Bad Request)";
 
-    private static final String NOT_FOUND = "404 (Not Found)";
+    public static final String NOT_FOUND = "404 (Not Found)";
 
     private static final String METHOD_NOT_ALLOWED = "405 (Method Not Allowed)";
 
@@ -39,7 +40,7 @@ public class ExceptionAction
 
     private static final String UNSUPPORTED_MEDIA_TYPE = "415 (Unsupported Media Type)";
 
-    private static final String INTERNAL_SERVER_ERROR = "500 (Internal Server Error)";
+    public static final String INTERNAL_SERVER_ERROR = "500 (Internal Server Error)";
 
     private static final Logger LOG = LoggerFactory.getLogger(ExceptionAction.class.getName());
 
@@ -51,13 +52,12 @@ public class ExceptionAction
      * @return
      * @throws org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException
      */
-    @RequestMapping()
+    @RequestMapping("/*")
     public Object PathNotFoundHandler(HttpServletRequest request) throws NoSuchRequestHandlingMethodException
     {
-        LOG
-            .warn(MessageFormat
-                .format("{0} occured, request URL: {1}, request host: {2}", NOT_FOUND, request
-                    .getRequestURI(), request.getRemoteAddr()));
+//        LOG.warn(MessageFormat
+//            .format("{0} occured, request URL: {1}, request host: {2}", NOT_FOUND, request
+//                .getRequestURI(), request.getRemoteAddr()));
         throw new NoSuchRequestHandlingMethodException(request);
     }
 

@@ -41,6 +41,10 @@ public class SchoolAction
         @RequestParam(defaultValue = "100") int pageSize)
     {
         Pagination page = schoolService.getPage(pageNo, pageSize);
+        if (page.getList().isEmpty())
+        {
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
+        }
         return Message.successMessage("", page.getList());
     }
 
@@ -56,6 +60,10 @@ public class SchoolAction
     public Object findSchoolByID(@PathVariable String id)
     {
         School bean = schoolService.findById(id);
+        if (null == bean)
+        {
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
+        }
         return Message.successMessage("", bean);
     }
 
@@ -71,6 +79,10 @@ public class SchoolAction
     public Object findSchoolByName(@PathVariable String name)
     {
         List<School> list = schoolService.findByName(name);
+        if (null == list)
+        {
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
+        }
         return Message.successMessage("", list);
     }
 }

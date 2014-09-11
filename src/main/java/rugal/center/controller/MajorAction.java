@@ -41,6 +41,10 @@ public class MajorAction
         @RequestParam(defaultValue = "20") int pageSize)
     {
         Pagination page = majorService.getPage(pageNo, pageSize);
+        if (page.getList().isEmpty())
+        {
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
+        }
         return Message.successMessage("", page.getList());
     }
 
@@ -56,6 +60,10 @@ public class MajorAction
     public Object findMajorByID(@PathVariable String id)
     {
         Major bean = majorService.findById(id);
+        if (null == bean)
+        {
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
+        }
         return Message.successMessage("", bean);
     }
 
@@ -71,6 +79,10 @@ public class MajorAction
     public Object findMajorByName(@PathVariable String name)
     {
         List<Major> list = majorService.findByName(name);
+        if (null == list)
+        {
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
+        }
         return Message.successMessage("", list);
     }
 }

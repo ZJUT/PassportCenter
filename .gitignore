@@ -3,3 +3,4 @@ target
 .project
 .settings
 nb*.xml
+data

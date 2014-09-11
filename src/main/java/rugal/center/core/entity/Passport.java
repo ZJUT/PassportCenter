@@ -25,38 +25,55 @@ import rugal.common.security.encoder.PwdEncoder;
 public class Passport implements Serializable
 {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
+    @Column(name = "id")
     private String id;
 
     @Size(max = 50)
+    @Column(name = "name")
     private String name;
 
-    @Size(max = 50)
-    @JsonIgnore
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "password")
     private String password;
 
-    @Size(max = 50)
-    private String nickname;
-
     @Size(max = 4)
+    @Column(name = "gender")
     private String gender;
 
-    @NotNull
-    private int activated = 0;
-
     @Size(max = 20)
+    @Column(name = "idcard")
     private String idcard;
 
     @Size(max = 20)
+    @Column(name = "wx")
     private String wx;
 
     @Size(max = 20)
+    @Column(name = "qq")
     private String qq;
+
+    @Size(max = 50)
+    @Column(name = "domitory")
+    private String domitory;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "activated")
+    private int activated;
+
+    @Size(max = 50)
+    @Column(name = "nickname")
+    private String nickname;
+
+    @JoinColumn(name = "ptid", referencedColumnName = "ptid")
+    @ManyToOne
+    private PassportType ptid;
 
     @Size(max = 15)
     @Column(name = "full_phone")
@@ -69,13 +86,6 @@ public class Passport implements Serializable
     @Size(max = 50)
     @Column(name = "bind_mail")
     private String bindMail;
-
-    @Size(max = 50)
-    private String domitory;
-
-    @Basic(optional = false)
-    @NotNull
-    private String type;
 
     @OneToMany(mappedBy = "id")
     @JsonIgnore
@@ -100,10 +110,10 @@ public class Passport implements Serializable
         this.id = id;
     }
 
-    public Passport(String id, String type)
+    public Passport(String id, PassportType ptid)
     {
         this.id = id;
-        this.type = type;
+        this.ptid = ptid;
     }
 
     public String getNickname()
@@ -154,7 +164,7 @@ public class Passport implements Serializable
 
     public boolean noPassword()
     {
-        return null == this.password || password.isEmpty();
+        return password.isEmpty();
     }
 
     public String getPassword()
@@ -269,14 +279,14 @@ public class Passport implements Serializable
         this.domitory = domitory;
     }
 
-    public String getType()
+    public PassportType getType()
     {
-        return type;
+        return ptid;
     }
 
-    public void setType(String type)
+    public void setType(PassportType ptid)
     {
-        this.type = type;
+        this.ptid = ptid;
     }
 
     public List<Account> getAccountList()
@@ -326,7 +336,7 @@ public class Passport implements Serializable
             return false;
         }
         Passport other = (Passport) object;
-        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
+        return this.id.equals(other.id);
     }
 
     @Override
@@ -334,4 +344,5 @@ public class Passport implements Serializable
     {
         return "rugal.center.core.entity.Passport[ id=" + id + " ]";
     }
+
 }

@@ -10,16 +10,16 @@ import rugal.center.core.pojo.ResolvedID;
  * @author rugal
  */
 @Component
-public class GraduateIDResolver extends IDResolver
+public class MasterIDResolver extends IDResolver
 {
 
-    private static final String TYPE = "Graduate";
+    private static final String TYPE = "Master";
 
     private static final String YEAR_PREFIX = "20";
 
     private static final String TYPE_PREFIX = "211";
 
-    public GraduateIDResolver()
+    public MasterIDResolver()
     {
     }
 

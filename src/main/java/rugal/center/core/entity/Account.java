@@ -21,8 +21,6 @@ import javax.validation.constraints.Size;
 public class Account implements Serializable
 {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @Basic(optional = false)
     @NotNull
@@ -81,12 +79,7 @@ public class Account implements Serializable
             return false;
         }
         Account other = (Account) object;
-        if ((this.username == null && other.username != null) || (this.username != null && !this.username
-            .equals(other.username)))
-        {
-            return false;
-        }
-        return true;
+        return this.username.equals(other.username);
     }
 
     @Override
