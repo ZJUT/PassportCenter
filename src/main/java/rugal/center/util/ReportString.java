@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rugal.center.util;
 
 import org.slf4j.Logger;
@@ -38,6 +33,8 @@ public class ReportString
     public static final String INFO_ACTIVATION_SUCCESS = "Activation succeeded!";
 
     public static final String ERROR_500 = "500 server error";
+
+    public static final String ERROR_404 = "404 not found";
 
     private ReportString()
     {

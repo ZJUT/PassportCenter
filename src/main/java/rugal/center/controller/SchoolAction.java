@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import rugal.center.core.entity.School;
 import rugal.center.core.service.SchoolService;
+import rugal.center.util.ReportString;
 import rugal.common.Message;
 
 /**
@@ -41,6 +42,10 @@ public class SchoolAction
         @RequestParam(defaultValue = "100") int pageSize)
     {
         Pagination page = schoolService.getPage(pageNo, pageSize);
+        if (page.getList().isEmpty())
+        {
+            return Message.failMessage(ReportString.ERROR_404);
+        }
         return Message.successMessage("", page.getList());
     }
 
@@ -56,6 +61,10 @@ public class SchoolAction
     public Object findSchoolByID(@PathVariable String id)
     {
         School bean = schoolService.findById(id);
+        if (null == bean)
+        {
+            return Message.failMessage(ReportString.ERROR_404);
+        }
         return Message.successMessage("", bean);
     }
 
@@ -71,6 +80,10 @@ public class SchoolAction
     public Object findSchoolByName(@PathVariable String name)
     {
         List<School> list = schoolService.findByName(name);
+        if (null == list)
+        {
+            return Message.failMessage(ReportString.ERROR_404);
+        }
         return Message.successMessage("", list);
     }
 }
