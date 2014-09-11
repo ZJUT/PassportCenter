@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import rugal.center.core.entity.Major;
 import rugal.center.core.service.MajorService;
-import rugal.center.util.ReportString;
 import rugal.common.Message;
 
 /**
@@ -44,7 +43,7 @@ public class MajorAction
         Pagination page = majorService.getPage(pageNo, pageSize);
         if (page.getList().isEmpty())
         {
-            return Message.failMessage(ReportString.ERROR_404);
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
         }
         return Message.successMessage("", page.getList());
     }
@@ -63,7 +62,7 @@ public class MajorAction
         Major bean = majorService.findById(id);
         if (null == bean)
         {
-            return Message.failMessage(ReportString.ERROR_404);
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
         }
         return Message.successMessage("", bean);
     }
@@ -82,7 +81,7 @@ public class MajorAction
         List<Major> list = majorService.findByName(name);
         if (null == list)
         {
-            return Message.failMessage(ReportString.ERROR_404);
+            return Message.failMessage(ExceptionAction.NOT_FOUND);
         }
         return Message.successMessage("", list);
     }

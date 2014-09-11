@@ -74,7 +74,7 @@ public class EntranceAction
         Passport bean = populatePassport(id);
         if (null == bean)
         {
-            return Message.failMessage(ReportString.WARN_NOT_EXIST);
+            return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
         if (!bean.isActivated() || bean.noPassword())
         {
@@ -82,7 +82,7 @@ public class EntranceAction
         }
         if (!bean.checkPassword(password))
         {
-            return Message.failMessage(ReportString.WARN_INVALID);
+            return Message.failMessage(ReportString.ERROR_INVALID_PASSPORT);
         }
         return Message.successMessage("", bean);
     }

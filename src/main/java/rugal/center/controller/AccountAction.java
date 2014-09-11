@@ -58,7 +58,7 @@ public class AccountAction
         Passport bean = passportService.findById(id);
         if (null == bean)
         {//passport not found
-            return Message.failMessage(ReportString.WARN_NOT_EXIST);
+            return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
         //needs to verify activation status of this passport
         if (0 == bean.getActivated())
@@ -99,13 +99,13 @@ public class AccountAction
         Account account = accountService.findByName(username);
         if (null == account)
         {
-            return Message.failMessage(ReportString.WARN_NOT_EXIST);
+            return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
         //verify the passwor of this account
         Passport bean = account.getId();
         if (!bean.checkPassword(password))
         {
-            return Message.failMessage(ReportString.WARN_INVALID);
+            return Message.failMessage(ReportString.ERROR_INVALID_PASSPORT);
         }
         accountService.deleteByName(username);
         return Message.successMessage("delete successfully", username);

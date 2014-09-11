@@ -56,7 +56,7 @@ public class PassportAction implements ApplicationContextAware
         Passport bean = passportService.findById(id);
         if (null == bean)
         {
-            return Message.failMessage(ReportString.WARN_NOT_EXIST);
+            return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
         if (bean.isActivated())
         {
@@ -64,7 +64,7 @@ public class PassportAction implements ApplicationContextAware
         }
         if (!bean.getDomitory().equals(number))
         {
-            return Message.failMessage(ReportString.WARN_INVALID);
+            return Message.failMessage(ReportString.ERROR_INVALID_PASSPORT);
         }
         passportService.activate(bean);
         return Message.successMessage(ReportString.INFO_ACTIVATION_SUCCESS, bean);
@@ -88,7 +88,7 @@ public class PassportAction implements ApplicationContextAware
         Passport bean = passportService.findById(id);
         if (null == bean)
         {
-            return Message.failMessage(ReportString.WARN_NOT_EXIST);
+            return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
         if (bean.isActivated())
         {
@@ -106,7 +106,7 @@ public class PassportAction implements ApplicationContextAware
         PassportActivator validator = (PassportActivator) context.getBean(beanName);
         if (!validator.check(bean, idcard))
         {
-            return Message.failMessage(ReportString.WARN_INVALID);
+            return Message.failMessage(ReportString.ERROR_INVALID_PASSPORT);
         }
         return validator.activate(bean);
     }
@@ -129,7 +129,7 @@ public class PassportAction implements ApplicationContextAware
         Passport bean = passportService.findById(id);
         if (null == bean)
         {//passport not found
-            return Message.failMessage(ReportString.WARN_NOT_EXIST);
+            return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
         if (!bean.isActivated() || bean.noPassword())
         {
@@ -138,7 +138,7 @@ public class PassportAction implements ApplicationContextAware
         }
         if (!bean.checkPassword(oldPWD))
         {
-            return Message.failMessage(ReportString.WARN_INVALID);
+            return Message.failMessage(ReportString.ERROR_INVALID_PASSPORT);
         }
         // password valid
         bean.setPassword(newPWD);
@@ -163,7 +163,7 @@ public class PassportAction implements ApplicationContextAware
         Passport bean = passportService.findById(id);
         if (null == bean)
         {
-            return Message.failMessage(ReportString.WARN_NOT_EXIST);
+            return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
         if (!bean.isActivated())
         {
@@ -172,7 +172,7 @@ public class PassportAction implements ApplicationContextAware
         }
         if (!bean.checkIDCard(idcard))
         {
-            return Message.failMessage(ReportString.WARN_INVALID);
+            return Message.failMessage(ReportString.ERROR_INVALID_PASSPORT);
         }
         /*
          * we might add more procedure like mailling verification

@@ -7,10 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import rugal.center.controller.ExceptionAction;
 import rugal.center.core.entity.Passport;
 import rugal.center.core.service.PassportService;
-import rugal.common.Message;
 import rugal.center.util.ReportString;
+import rugal.common.Message;
 import rugal.common.mail.pojo.Mail;
 import rugal.common.mail.service.SendMailService;
 
@@ -78,7 +79,7 @@ public class TeacherPassportActivator implements PassportActivator
         } catch (MessagingException ex)
         {
             LOG.error("Fail to send email", ex);
-            return Message.failMessage(ReportString.ERROR_500);
+            return Message.failMessage(ExceptionAction.INTERNAL_SERVER_ERROR);
         }
         return Message.successMessage(ReportString.INFO_CHECK_EMAIL, bean.getBindMail());
     }

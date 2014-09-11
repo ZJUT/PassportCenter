@@ -58,7 +58,7 @@ public class IDResolveAction implements ApplicationContextAware
         Passport passport = passportService.findById(id);
         if (null == passport)
         {
-            return Message.failMessage(ReportString.WARN_NOT_EXIST);
+            return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
         ResolvedID resolvedID = null;
         String beanName = Introspector.decapitalize(passport.getType().getName()) + IDResolver.class

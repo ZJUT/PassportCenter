@@ -33,7 +33,7 @@ public class ExceptionAction
 
     private static final String BAD_REQUEST = "400 (Bad Request)";
 
-    private static final String NOT_FOUND = "404 (Not Found)";
+    public static final String NOT_FOUND = "404 (Not Found)";
 
     private static final String METHOD_NOT_ALLOWED = "405 (Method Not Allowed)";
 
@@ -41,7 +41,7 @@ public class ExceptionAction
 
     private static final String UNSUPPORTED_MEDIA_TYPE = "415 (Unsupported Media Type)";
 
-    private static final String INTERNAL_SERVER_ERROR = "500 (Internal Server Error)";
+    public static final String INTERNAL_SERVER_ERROR = "500 (Internal Server Error)";
 
     private static final Logger LOG = LoggerFactory.getLogger(ExceptionAction.class.getName());
 
