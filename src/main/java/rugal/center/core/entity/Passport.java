@@ -40,6 +40,7 @@ public class Passport implements Serializable
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "password")
+    @JsonIgnore
     private String password;
 
     @Size(max = 4)
@@ -88,16 +89,16 @@ public class Passport implements Serializable
     private String bindMail;
 
     @OneToMany(mappedBy = "id")
-    @JsonIgnore
+//    @JsonIgnore
     private List<Account> accountList;
 
     @JoinColumn(name = "sid", referencedColumnName = "sid")
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     private School sid;
 
     @JoinColumn(name = "mid", referencedColumnName = "mid")
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     private Major mid;
 

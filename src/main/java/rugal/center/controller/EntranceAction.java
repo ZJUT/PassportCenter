@@ -76,7 +76,7 @@ public class EntranceAction
         {
             return Message.failMessage(ReportString.ERROR_NOT_EXIST);
         }
-        if (!bean.isActivated() || bean.noPassword())
+        if (!bean.isActivated())
         {
             return Message.failMessage(ReportString.INFO_NEEDS_ACTIVATED);
         }

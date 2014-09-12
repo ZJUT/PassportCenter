@@ -1,5 +1,6 @@
 package rugal.center.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -37,6 +38,7 @@ public class PassportType implements Serializable
     private String abbreviation;
 
     @OneToMany(mappedBy = "ptid")
+    @JsonIgnore
     private List<Passport> passportList;
 
     public PassportType()
