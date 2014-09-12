@@ -22,15 +22,15 @@ public class TeacherIDResolver extends IDResolver
     }
 
     /**
-     * this is a entrance for polymorphic implementation of resolve for teacher<BR/>
+     * this is a entrance for polymorphic implementation of doResolve for teacher<BR/>
      * for teachers, we only provide the type and his/her introduction page on ZJUT web site<BR/>
      * for uniform regard, this information also filled in ResolvedID class.
      *
-     * @param passport the passport information going to resolve
-     * @return a resolvedID information about this passport, while null if not found or can not resolve
+     * @param passport the passport information going to doResolve
+     * @return a resolvedID information about this passport, while null if not found or can not doResolve
      */
     @Override
-    public ResolvedID resolve(Passport passport)
+    public ResolvedID doResolve(Passport passport)
     {
         ResolvedID id = new ResolvedID();
 

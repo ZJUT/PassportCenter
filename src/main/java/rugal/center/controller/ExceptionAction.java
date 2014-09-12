@@ -186,7 +186,6 @@ public class ExceptionAction
         })
     public Message otherException(HttpServletRequest req, Exception e)
     {
-        LOG.error("Other exception", e);
-        return Message.failMessage(e.getMessage());
+        return Message.failMessage(INTERNAL_SERVER_ERROR);
     }
 }

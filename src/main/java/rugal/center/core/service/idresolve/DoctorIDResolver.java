@@ -24,7 +24,7 @@ public class DoctorIDResolver extends IDResolver
     }
 
     /**
-     * this is a entrance for polymorphic implementation of resolve for doctor degree<BR/>
+     * this is a entrance for polymorphic implementation of doResolve for doctor degree<BR/>
      * as graduate student id is not easy to recognize in major field, we just skip major information<BR/>
      * sample 1111201001:<BR/>
      * first three digits is tagged as doctor: 111<BR/>
@@ -32,13 +32,13 @@ public class DoctorIDResolver extends IDResolver
      * next two is school id: 01<BR/>
      * next three digits is student number in this school, 001 means this is No.001 student in this school<BR/>
      *
-     * with the help of data above, we can resolve some information concern about this graduate student
+ with the help of data above, we can doResolve some information concern about this graduate student
      *
-     * @param passport the passport information going to resolve
-     * @return a resolvedID information about this passport, while null if not found or can not resolve
+     * @param passport the passport information going to doResolve
+     * @return a resolvedID information about this passport, while null if not found or can not doResolve
      */
     @Override
-    public ResolvedID resolve(Passport passport)
+    public ResolvedID doResolve(Passport passport)
     {
         ResolvedID id = new ResolvedID();
 
@@ -48,6 +48,7 @@ public class DoctorIDResolver extends IDResolver
 
         String sid = TYPE_PREFIX + passport.getId().substring(5, 7);
         id.put("school", getSchoolService().findById(sid).getName());
+        id.put("sid", sid);
 
         return id;
     }

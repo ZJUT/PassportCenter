@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import rugal.center.core.entity.Account;
+import rugal.center.core.entity.Major;
 import rugal.center.core.entity.Passport;
+import rugal.center.core.entity.School;
+import rugal.center.core.pojo.ResolvedID;
 import rugal.center.core.service.AccountService;
+import rugal.center.core.service.MajorService;
 import rugal.center.core.service.PassportService;
+import rugal.center.core.service.SchoolService;
+import rugal.center.core.service.idresolve.IDResolverUtil;
 import rugal.center.util.ReportString;
 import rugal.common.Message;
 
@@ -28,7 +34,16 @@ public class EntranceAction
 {
 
     @Autowired
+    private SchoolService schoolService;
+
+    @Autowired
+    private MajorService majorService;
+
+    @Autowired
     private PassportService passportService;
+
+    @Autowired
+    private IDResolverUtil idResolverUtil;
 
     @Autowired
     private AccountService accountService;
@@ -83,6 +98,30 @@ public class EntranceAction
         if (!bean.checkPassword(password))
         {
             return Message.failMessage(ReportString.ERROR_INVALID_PASSPORT);
+        }
+        //We assume a transfered student must be a bachelor student, so just let it be as it already contain all information we need to present.
+        //But if a passport is not transfered, it may be a teacher or others, be catious
+        if (!bean.isTransfered())
+        {
+            ResolvedID resolvedID = idResolverUtil.resolve(bean);
+            if (null == resolvedID)
+            {
+                return Message.failMessage("Unable to resolve this ID: " + id);
+            }
+
+            bean.setMid((Major) resolvedID.getMap().get("major"));
+            bean.setSid((School) resolvedID.getMap().get("school"));
+//            if (resolvedID.getMap().containsKey("major"))
+//            {//if has mid field, must be undergraduate student
+//
+//                bean.setMid((Major) resolvedID.getMap().get("major"));
+//            } else if (resolvedID.getMap().containsKey("sid"))
+//            {//if only has sid field, must be graduate student
+//
+//            } else
+//            {//must be staff
+//
+//            }
         }
         return Message.successMessage("", bean);
     }

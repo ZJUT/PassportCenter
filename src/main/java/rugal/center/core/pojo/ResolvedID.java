@@ -20,21 +20,21 @@ import java.util.HashMap;
 public class ResolvedID
 {
 
-    private final HashMap<String, String> map;
+    private final HashMap<String, Object> map;
 
     private String type;
 
     public ResolvedID()
     {
-        this.map = new HashMap<String, String>(4);
+        this.map = new HashMap<>(4);
     }
 
-    public String put(String k, String v)
+    public Object put(String k, Object v)
     {
         return map.put(k, v);
     }
 
-    public HashMap<String, String> getMap()
+    public HashMap<String, Object> getMap()
     {
         return map;
     }

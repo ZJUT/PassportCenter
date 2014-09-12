@@ -30,12 +30,12 @@ public abstract class IDResolver
     }
 
     /**
-     * this is a entrance for polymorphic implementation of resolve for different type of degree
+     * this is a entrance for polymorphic implementation of doResolve for different type of degree
      *
-     * @param passport the passport information going to resolve
-     * @return a resolvedID information about this passport, while null if not found or can not resolve
+     * @param passport the passport information going to doResolve
+     * @return a resolvedID information about this passport, while null if not found or can not doResolve
      */
-    public abstract ResolvedID resolve(Passport passport);
+    protected abstract ResolvedID doResolve(Passport passport);
 
     /**
      * @return the schoolService
@@ -46,27 +46,11 @@ public abstract class IDResolver
     }
 
     /**
-     * @param schoolService the schoolService to set
-     */
-    public void setSchoolService(SchoolService schoolService)
-    {
-        this.schoolService = schoolService;
-    }
-
-    /**
      * @return the majorService
      */
     public MajorService getMajorService()
     {
         return majorService;
-    }
-
-    /**
-     * @param majorService the majorService to set
-     */
-    public void setMajorService(MajorService majorService)
-    {
-        this.majorService = majorService;
     }
 
 }

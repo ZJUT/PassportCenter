@@ -320,6 +320,11 @@ public class Passport implements Serializable
         this.mid = mid;
     }
 
+    public boolean isTransfered()
+    {
+        return this.mid != null || this.sid != null;
+    }
+
     @Override
     public int hashCode()
     {
