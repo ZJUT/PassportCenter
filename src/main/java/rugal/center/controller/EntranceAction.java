@@ -76,7 +76,10 @@ public class EntranceAction
     /**
      * passport or account login by id and passport<BR/>
      *
-     * GET /entrance?id=${id}&password=${password} HTTP/1.1<BR/>
+     * GET /login?id=${id}&password=${password} HTTP/1.1<BR/>
+     * This mapping will tackle with transfer student and normal one.
+     * For transfer student, it will pick up their academic information.
+     * For normal student, it will resolve their id and fill according to the field
      *
      * @param id       given id number belonging to user
      * @param password password which already created by user
@@ -99,8 +102,8 @@ public class EntranceAction
         {
             return Message.failMessage(ReportString.ERROR_INVALID_PASSPORT);
         }
-        //We assume a transfered student must be a bachelor student, so just let it be as it already contain all information we need to present.
-        //But if a passport is not transfered, it may be a teacher or others, be catious
+        //We assume a transfered student must be a bachelor student
+        //so just let it be as it already contain all information we need to present.
         if (!bean.isTransfered())
         {
             ResolvedID resolvedID = idResolverUtil.resolve(bean);
@@ -108,20 +111,9 @@ public class EntranceAction
             {
                 return Message.failMessage("Unable to resolve this ID: " + id);
             }
-
+            //No need for considering passport type since no matching is a null
             bean.setMid((Major) resolvedID.getMap().get("major"));
             bean.setSid((School) resolvedID.getMap().get("school"));
-//            if (resolvedID.getMap().containsKey("major"))
-//            {//if has mid field, must be undergraduate student
-//
-//                bean.setMid((Major) resolvedID.getMap().get("major"));
-//            } else if (resolvedID.getMap().containsKey("sid"))
-//            {//if only has sid field, must be graduate student
-//
-//            } else
-//            {//must be staff
-//
-//            }
         }
         return Message.successMessage("", bean);
     }
