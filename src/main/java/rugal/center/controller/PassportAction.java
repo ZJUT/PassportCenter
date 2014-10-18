@@ -1,5 +1,6 @@
 package rugal.center.controller;
 
+import java.beans.Introspector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -15,12 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import rugal.center.core.entity.Passport;
 import rugal.center.core.service.PassportService;
 import rugal.center.core.service.validator.PassportActivator;
+import rugal.center.core.service.validator.StudentPassportActivator;
+import rugal.center.core.service.validator.TeacherPassportActivator;
 import rugal.center.util.ReportString;
 import rugal.common.Message;
 
 /**
- * this is a action that provide passport operation web service.<BR/>
- * the function includes activation, deactivation and updating of password
+ * This is a action that provide web service of passport related operations.<BR/>
+ * The function includes activation, deactivation and updating of password
  *
  * @author Rugal Bernstein
  *
@@ -100,10 +103,10 @@ public class PassportAction implements ApplicationContextAware
         String beanName;
         if (bean.getType().getAbbreviation().equals("T"))
         {
-            beanName = "teacherPassportActivator";
+            beanName = Introspector.decapitalize(TeacherPassportActivator.class.getSimpleName());
         } else
         {
-            beanName = "studentPassportActivator";
+            beanName = Introspector.decapitalize(StudentPassportActivator.class.getSimpleName());
         }
         PassportActivator validator = (PassportActivator) context.getBean(beanName);
         if (!validator.check(bean, idcard))

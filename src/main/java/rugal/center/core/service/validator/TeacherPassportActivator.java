@@ -64,7 +64,7 @@ public class TeacherPassportActivator implements PassportActivator
          * 3. what kind of verification number it will be
          * 4. how to do the vertification
          * 5. where the verfication number to store
-         * 6. how is the storage strategy
+         * 6. what is the storage strategy
          */
         if (null == bean.getBindMail() || bean.getBindMail().isEmpty())
         {
