@@ -36,10 +36,12 @@ public class EntranceAction
     private static final Logger LOG = LoggerFactory.getLogger(EntranceAction.class.getName());
 
     /**
-     * Populate passport from an ID, if it is a account id, then get its associated passport, or get use passport it represented.
+     * Populate passport from an ID, if it is a account id, then get its associated passport, or get
+     * use passport it represented.
      * Or return NULL if both not matched.
      *
      * @param id
+     *
      * @return
      */
     private Passport populatePassport(String id)
@@ -65,11 +67,12 @@ public class EntranceAction
      *
      * @param id       given id number belonging to user
      * @param password password which already created by user
+     *
      * @return the right passport or account bean information in JSON
      */
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public Object login(@RequestParam String id, @RequestParam String password)
+    public Message login(@RequestParam String id, @RequestParam String password)
     {
         Passport bean = populatePassport(id);
         if (null == bean)

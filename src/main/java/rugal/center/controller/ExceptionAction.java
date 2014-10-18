@@ -30,6 +30,8 @@ import rugal.common.Message;
 public class ExceptionAction
 {
 
+    private static final String TEST_GOOD = "1024 (Test Good)";
+
     private static final String BAD_REQUEST = "400 (Bad Request)";
 
     public static final String NOT_FOUND = "404 (Not Found)";
@@ -49,16 +51,23 @@ public class ExceptionAction
      * This method is to address no handler request, throw exception into 404 exception advisor
      *
      * @param request
+     *
      * @return
+     *
      * @throws org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException
      */
-    @RequestMapping("/*")
-    public Object PathNotFoundHandler(HttpServletRequest request) throws NoSuchRequestHandlingMethodException
+    @RequestMapping("/**")
+    @ResponseBody
+    public Message PathNotFoundHandler(HttpServletRequest request)
     {
-//        LOG.warn(MessageFormat
-//            .format("{0} occured, request URL: {1}, request host: {2}", NOT_FOUND, request
-//                .getRequestURI(), request.getRemoteAddr()));
-        throw new NoSuchRequestHandlingMethodException(request);
+        return Message.failMessage(NOT_FOUND);
+    }
+
+    @RequestMapping("test")
+    @ResponseBody
+    public Message test()
+    {
+        return Message.successMessage(TEST_GOOD, null);
     }
 
     /**
@@ -66,6 +75,7 @@ public class ExceptionAction
      *
      * @param req
      * @param e
+     *
      * @return
      */
     @ResponseBody
@@ -86,6 +96,7 @@ public class ExceptionAction
      *
      * @param req
      * @param e
+     *
      * @return
      */
     @ResponseBody
@@ -105,6 +116,7 @@ public class ExceptionAction
      *
      * @param req
      * @param e
+     *
      * @return
      */
     @ResponseBody
@@ -123,6 +135,7 @@ public class ExceptionAction
      *
      * @param req
      * @param e
+     *
      * @return
      */
     @ResponseBody
@@ -141,6 +154,7 @@ public class ExceptionAction
      *
      * @param req
      * @param e
+     *
      * @return
      */
     @ResponseBody
@@ -159,6 +173,7 @@ public class ExceptionAction
      *
      * @param req
      * @param e
+     *
      * @return
      */
     @ResponseBody
@@ -177,6 +192,7 @@ public class ExceptionAction
      *
      * @param req
      * @param e
+     *
      * @return
      */
     @ResponseBody

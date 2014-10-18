@@ -1,6 +1,7 @@
 package rugal.center.core.service.validator;
 
 import rugal.center.core.entity.Passport;
+import rugal.common.Message;
 
 /**
  *
@@ -11,6 +12,6 @@ public interface PassportActivator
 
     public boolean check(Passport passport, String key);
 
-    public Object activate(Passport passport);
+    public Message activate(Passport passport);
 
 }

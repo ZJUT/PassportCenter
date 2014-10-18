@@ -47,11 +47,12 @@ public class PassportAction implements ApplicationContextAware
      *
      * @param id
      * @param number
+     *
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/activation/staff/{id}/{number}")
-    public Object staffActivate(@PathVariable String id, @PathVariable String number)
+    public Message staffActivate(@PathVariable String id, @PathVariable String number)
     {
         Passport bean = passportService.findById(id);
         if (null == bean)
@@ -78,12 +79,13 @@ public class PassportAction implements ApplicationContextAware
      * @param id       given id number binded with a user
      * @param idcard   given idcard number binded with a user
      * @param password
+     *
      * @return correct passport bean if found, or error info when passport already activated
      */
     @ResponseBody
     @RequestMapping(value = "/activation", method = RequestMethod.PUT)
-    public Object activate(@RequestParam String id, @RequestParam String idcard,
-        @RequestParam String password)
+    public Message activate(@RequestParam String id, @RequestParam String idcard,
+                            @RequestParam String password)
     {
         Passport bean = passportService.findById(id);
         if (null == bean)
@@ -119,12 +121,13 @@ public class PassportAction implements ApplicationContextAware
      * @param id     given id number binded with a user
      * @param oldPWD type in old password for verification
      * @param newPWD the new password to change to
+     *
      * @return return correct bean information if changed, or get error JSON
      */
     @ResponseBody
     @RequestMapping(value = "/password", method = RequestMethod.PUT)
-    public Object changePassword(@RequestParam String id, @RequestParam String oldPWD,
-        @RequestParam String newPWD)
+    public Message changePassword(@RequestParam String id, @RequestParam String oldPWD,
+                                  @RequestParam String newPWD)
     {
         Passport bean = passportService.findById(id);
         if (null == bean)
@@ -154,11 +157,12 @@ public class PassportAction implements ApplicationContextAware
      *
      * @param id     given id number binded with a user
      * @param idcard given idcard number binded with a user
+     *
      * @return correct passport bean if successfully deactivated, or error info.
      */
     @ResponseBody
     @RequestMapping(value = "/deactivation", method = RequestMethod.PUT)
-    public Object deactivate(@RequestParam String id, @RequestParam String idcard)
+    public Message deactivate(@RequestParam String id, @RequestParam String idcard)
     {
         Passport bean = passportService.findById(id);
         if (null == bean)

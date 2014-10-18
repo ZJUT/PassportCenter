@@ -41,18 +41,21 @@ public class IDResolveAction implements ApplicationContextAware
      * provide web service that only resolve those id that are valid and existed in database
      *
      * GET /id/${id}?content={scope} HTTP/1.1<BR/>
-     * Where scope is to determine use real individual passport data or just resolve as general format
+     * Where scope is to determine use real individual passport data or just resolve as general
+     * format
      *
      *
      * @param id         given id to be resolved
      * @param individual given resolve to individual or just general format
-     * @return will return a JSON that contain resolved information for given id if successfully executed, whilst return
+     *
+     * @return will return a JSON that contain resolved information for given id if successfully
+     *         executed, whilst return
      *         null either can not find in database or format invalid
      */
     @ResponseBody
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public Object resolve(@PathVariable String id,
-        @RequestParam(required = false, value = "false") boolean individual)
+    public Message resolve(@PathVariable String id,
+                           @RequestParam(required = false, value = "false") boolean individual)
     {
         //TODO this method needs to enhance for individual.
         Passport passport = passportService.findById(id);

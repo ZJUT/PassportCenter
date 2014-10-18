@@ -33,12 +33,13 @@ public class MajorAction
      *
      * @param pageNo   get the page of No. pageNo, default value is 0
      * @param pageSize get the page with size of pageSize, default value is 100
+     *
      * @return return JSON format data with status in it
      */
     @ResponseBody
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public Object allMajors(@RequestParam(defaultValue = "0") int pageNo,
-        @RequestParam(defaultValue = "20") int pageSize)
+    public Message allMajors(@RequestParam(defaultValue = "0") int pageNo,
+                             @RequestParam(defaultValue = "20") int pageSize)
     {
         Pagination page = majorService.getPage(pageNo, pageSize);
         if (page.getList().isEmpty())
@@ -53,11 +54,12 @@ public class MajorAction
      * GET /major/id/${id} HTTP/1.1
      *
      * @param id the id that to find
+     *
      * @return JSON that contain given id or NOT_FOUND status
      */
     @ResponseBody
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
-    public Object findMajorByID(@PathVariable String id)
+    public Message findMajorByID(@PathVariable String id)
     {
         Major bean = majorService.findById(id);
         if (null == bean)
@@ -72,11 +74,12 @@ public class MajorAction
      * GET /major/name/${name} HTTP/1.1
      *
      * @param name the key word to be searched
+     *
      * @return return JSON data contain the majors information, or NOT_FOUND status
      */
     @ResponseBody
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
-    public Object findMajorByName(@PathVariable String name)
+    public Message findMajorByName(@PathVariable String name)
     {
         List<Major> list = majorService.findByName(name);
         if (null == list)

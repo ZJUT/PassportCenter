@@ -20,7 +20,8 @@ import rugal.common.Message;
 /**
  * this is a action that handle with operation of account.<BR/>
  * approximately includes creation and deletion.<BR/>
- * as account information is just a mask of passport, hence here is no need to create password for it,<BR/>
+ * as account information is just a mask of passport, hence here is no need to create password for
+ * it,<BR/>
  * to omit verification deliberately, and conveniently manage passport information
  *
  * @author Rugal Bernstein
@@ -42,18 +43,20 @@ public class AccountAction
     private static final Logger LOG = LoggerFactory.getLogger(AccountAction.class.getName());
 
     /**
-     * create an account without password verification, a passport can only create "account number" of account<BR/>
+     * create an account without password verification, a passport can only create "account number"
+     * of account<BR/>
      *
      * POST /account HTTP/1.1 <BR/>
      * id=${id}&username=${username}
      *
      * @param id       the passport id that used to create belonging to it
      * @param username the new account name
+     *
      * @return the created account bean in JSON
      */
     @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Object create(@RequestParam String id, @RequestParam String username)
+    public Message create(@RequestParam String id, @RequestParam String username)
     {
         Passport bean = passportService.findById(id);
         if (null == bean)
@@ -90,11 +93,12 @@ public class AccountAction
      *
      * @param username the id of an account
      * @param password the password used to verify the authentication
+     *
      * @return return empty string with nothing in it but not null String if succeeded
      */
     @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public Object delete(@RequestParam String username, @RequestParam String password)
+    public Message delete(@RequestParam String username, @RequestParam String password)
     {
         Account account = accountService.findByName(username);
         if (null == account)

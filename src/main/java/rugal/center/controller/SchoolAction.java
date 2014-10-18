@@ -33,12 +33,13 @@ public class SchoolAction
      *
      * @param pageNo   get the page of No. pageNo, default value is 0
      * @param pageSize get the page with size of pageSize, default value is 100
+     *
      * @return return all schools information
      */
     @ResponseBody
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public Object allSchool(@RequestParam(defaultValue = "0") int pageNo,
-        @RequestParam(defaultValue = "100") int pageSize)
+    public Message allSchool(@RequestParam(defaultValue = "0") int pageNo,
+                             @RequestParam(defaultValue = "100") int pageSize)
     {
         Pagination page = schoolService.getPage(pageNo, pageSize);
         if (page.getList().isEmpty())
@@ -53,11 +54,12 @@ public class SchoolAction
      * GET /school/id/${id} HTTP/1.1
      *
      * @param id the id of school to be find
+     *
      * @return JSON data contain this id of school or NOT_FOUND status
      */
     @ResponseBody
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
-    public Object findSchoolByID(@PathVariable String id)
+    public Message findSchoolByID(@PathVariable String id)
     {
         School bean = schoolService.findById(id);
         if (null == bean)
@@ -72,11 +74,12 @@ public class SchoolAction
      * GET /school/name/${name} HTTP/1.1
      *
      * @param name key word for search
+     *
      * @return JSON data which contains this name, or NOT_FOUND status
      */
     @ResponseBody
     @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
-    public Object findSchoolByName(@PathVariable String name)
+    public Message findSchoolByName(@PathVariable String name)
     {
         List<School> list = schoolService.findByName(name);
         if (null == list)

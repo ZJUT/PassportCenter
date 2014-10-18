@@ -50,10 +50,11 @@ public class TeacherPassportActivator implements PassportActivator
      * In this method, we use dormitory as storage field for verification number.
      *
      * @param bean
+     *
      * @return
      */
     @Override
-    public Object activate(Passport bean)
+    public Message activate(Passport bean)
     {
         //if this passport is belong to teacher, we need mail to verify
         //There are several problems

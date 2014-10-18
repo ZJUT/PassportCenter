@@ -25,7 +25,7 @@ public class StudentPassportActivator implements PassportActivator
     }
 
     @Override
-    public Object activate(Passport bean)
+    public Message activate(Passport bean)
     {
         passportService.activate(bean);
         return Message.successMessage(ReportString.INFO_ACTIVATION_SUCCESS, bean);
